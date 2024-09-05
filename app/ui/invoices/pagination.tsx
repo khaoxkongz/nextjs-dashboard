@@ -1,9 +1,9 @@
 'use client';
 
+import { generatePagination } from '@/app/lib/utils';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { generatePagination } from '@/app/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
@@ -26,7 +26,11 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
       {/*  NOTE: Uncomment this code in Chapter 11 */}
 
       <div className="inline-flex">
-        <PaginationArrow direction="left" href={createPageURL(currentPage - 1)} isDisabled={currentPage <= 1} />
+        <PaginationArrow
+          direction="left"
+          href={createPageURL(currentPage - 1)}
+          isDisabled={currentPage <= 1}
+        />
 
         <div className="flex -space-x-px">
           {allPages.map((page, index) => {
@@ -81,7 +85,10 @@ function PaginationNumber({
   return isActive || position === 'middle' ? (
     <div className={className}>{page}</div>
   ) : (
-    <Link href={href} className={className}>
+    <Link
+      href={href}
+      className={className}
+    >
       {page}
     </Link>
   );
@@ -108,7 +115,10 @@ function PaginationArrow({
   return isDisabled ? (
     <div className={className}>{icon}</div>
   ) : (
-    <Link className={className} href={href}>
+    <Link
+      className={className}
+      href={href}
+    >
       {icon}
     </Link>
   );
